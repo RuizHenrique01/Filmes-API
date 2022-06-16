@@ -14,7 +14,9 @@ namespace FilmesAPI.Data.Dtos
         
         [Required(ErrorMessage = "O id do endereco é obrigatório")]
         public int EnderecoId { get; set; }
-        
+
+        [Required(ErrorMessage = "O id do gerente é obrigatório")]
+        public int GerenteId { get; set; }
         
     }
 }
