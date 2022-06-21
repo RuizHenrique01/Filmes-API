@@ -3,6 +3,8 @@ using AutoMapper;
 using FilmesAPI.Data;
 using FilmesAPI.Data.Dtos;
 using FilmesAPI.Models;
+using FilmesAPI.Services;
+using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FilmesAPI.Controllers
@@ -10,49 +12,30 @@ namespace FilmesAPI.Controllers
     [ApiController]
     [Route("[controller]")]
     public class GerenteController : ControllerBase{
-        private AppDbContext _context;
-        private IMapper _mapper;
+        private GerenteService _gerenteService;
 
-        public GerenteController(AppDbContext context, IMapper mapper){
-            _context = context;
-            _mapper = mapper;
+        public GerenteController(GerenteService gerenteService){
+            _gerenteService = gerenteService;
         }
 
         [HttpPost]
         public IActionResult AdiconaGerente([FromBody] CreateGerenteDto gerenteDto){
-
-            Gerente gerente = _mapper.Map<Gerente>(gerenteDto);
-
-            _context.Gerentes.Add(gerente);
-            _context.SaveChanges();
-            return CreatedAtAction(nameof(RecuperarGerentePorId), new { Id = gerente.Id}, gerente);
+            ReadGerenteDto readGerenteDto =_gerenteService.AdicionaGerente(gerenteDto);
+            
+            return CreatedAtAction(nameof(RecuperarGerentePorId), new { Id = readGerenteDto.Id}, readGerenteDto);
         }
 
         [HttpGet("{id}")]
         public IActionResult RecuperarGerentePorId(int id){
-            Gerente gerente = _context.Gerentes.Find(id);
-
-            if(gerente != null){
-
-                ReadGerenteDto gerenteDto = _mapper.Map<ReadGerenteDto>(gerente);
-
-                return Ok(gerenteDto);
-            }
-
+            ReadGerenteDto readGerenteDto = _gerenteService.RecuperarGerentePorId(id);
+            if(readGerenteDto != null) return Ok(readGerenteDto);
             return NotFound();
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeletarGerente(int id){
-            Gerente gerente = _context.Gerentes.Find(id);
-
-            if(gerente == null){
-                return NotFound();
-            }
-
-            _context.Gerentes.Remove(gerente);
-            _context.SaveChanges();
-
+            Result resultado =_gerenteService.DeletarGerente(id);
+            if(resultado.IsFailed) return NotFound();
             return NoContent();
         }
     }

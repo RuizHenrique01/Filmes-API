@@ -29,6 +29,7 @@ namespace FilmesApi
             services.AddScoped<CinemaService, CinemaService>();
             services.AddScoped<EnderecoService, EnderecoService>();
             services.AddScoped<SessaoService, SessaoService>();
+            services.AddScoped<GerenteService, GerenteService>();
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
