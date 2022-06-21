@@ -2,6 +2,7 @@
 
 using System;
 using FilmesAPI.Data;
+using FilmesAPI.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,7 @@ namespace FilmesApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseLazyLoadingProxies().UseMySql(Configuration.GetConnectionString("FilmeConnection"), ServerVersion.AutoDetect(Configuration.GetConnectionString("FilmeConnection"))));
+            services.AddScoped<FilmeService, FilmeService>();
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
