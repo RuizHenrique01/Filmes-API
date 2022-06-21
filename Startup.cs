@@ -26,6 +26,7 @@ namespace FilmesApi
         {
             services.AddDbContext<AppDbContext>(options => options.UseLazyLoadingProxies().UseMySql(Configuration.GetConnectionString("FilmeConnection"), ServerVersion.AutoDetect(Configuration.GetConnectionString("FilmeConnection"))));
             services.AddScoped<FilmeService, FilmeService>();
+            services.AddScoped<CinemaService, CinemaService>();
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
