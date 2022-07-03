@@ -13,10 +13,18 @@ namespace UsuariosAPI.Controllers{
             _cadastroService = cadastroService;
         }
 
+        [HttpPost]
         public IActionResult AdicionaUsuario([FromBody] CreateUsuarioDto usuarioDto){
             Result resultado = _cadastroService.CadastraUsuario(usuarioDto);
             if(resultado.IsFailed) return BadRequest("Falha ao cadastrar usuário");
-            return Ok();
+            return Ok(resultado.Successes);
+        }
+
+        [HttpPost("/ativa")]
+        public IActionResult AtivaContaUsuario([FromBody] AtivaContaRequest ativaContaRequest){
+            Result resultado = _cadastroService.AtivaContaUsuario(ativaContaRequest);
+            if(resultado.IsFailed) return StatusCode(500);
+            return Ok(resultado.Successes);
         }
     }
 }
