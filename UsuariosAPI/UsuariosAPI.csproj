@@ -1,23 +1,24 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>4a853e26-18e6-4825-9dce-7ce90d7003b0</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="FluentResults" Version="2.5.0"/>
-    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0"/>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.7"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.7"/>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.7"/>
+    <PackageReference Include="FluentResults" Version="2.5.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.7">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="5.0.7"/>
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.1"/>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3"/>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1"/>
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.12.0"/>
-    <PackageReference Include="MailKit" Version="2.14.0"/>
-    <PackageReference Include="MimeKit" Version="2.14.0"/>
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="5.0.7" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.12.0" />
+    <PackageReference Include="MailKit" Version="2.14.0" />
+    <PackageReference Include="MimeKit" Version="2.14.0" />
   </ItemGroup>
 </Project>
