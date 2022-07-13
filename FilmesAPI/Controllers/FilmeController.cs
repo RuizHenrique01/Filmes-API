@@ -8,6 +8,7 @@ using AutoMapper;
 using System.Linq;
 using FilmesAPI.Services;
 using FluentResults;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FilmesAPI.Controllers
 {
@@ -21,6 +22,7 @@ namespace FilmesAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public IActionResult AdiconaFilme([FromBody] CreateFilmeDto filmeDto){
 
             ReadFilmeDto readFilmeDto = _filmeService.AdicionaFilme(filmeDto);

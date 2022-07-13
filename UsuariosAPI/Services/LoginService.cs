@@ -25,7 +25,9 @@ namespace UsuariosAPI.Services{
                 .Users
                 .FirstOrDefault(usuario => usuario.NormalizedUserName == request.Username.ToUpper());
                 
-                Token token = _tokenService.CreateToken(usuarioIdentity);
+                var roleIdentity = _signInManager.UserManager.GetRolesAsync(usuarioIdentity).Result.FirstOrDefault();
+                
+                Token token = _tokenService.CreateToken(usuarioIdentity, roleIdentity);
                 
                 return Result.Ok().WithSuccess(token.Value);
             }

@@ -16,9 +16,11 @@ namespace UsuariosAPI.Services{
         
         public void EnviarEmail(string[] destinatarios, string assunto, int usuarioId, string code)
         {
-            Mensagem mensagem = new Mensagem(destinatarios, assunto, usuarioId, code);
-            var mensagemDeEmail = CriarCorpoDoEmail(mensagem);
-            Enviar(mensagemDeEmail);
+            if(!string.IsNullOrEmpty(_configuration.GetValue<string>("EmailSettings:From"))){
+                Mensagem mensagem = new Mensagem(destinatarios, assunto, usuarioId, code);
+                var mensagemDeEmail = CriarCorpoDoEmail(mensagem);
+                Enviar(mensagemDeEmail);
+            }
         }
 
         private void Enviar(MimeMessage mensagemDeEmail)
