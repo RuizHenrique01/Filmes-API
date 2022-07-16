@@ -31,7 +31,7 @@ namespace FilmesAPI.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "admin, regular")]
+        [Authorize(Roles = "admin, regular", Policy = "IdadeMinima")]
         public IActionResult RecuperarFilme([FromQuery] int? classificacaoEtaria) {
 
             List<ReadFilmeDto> filmeDtos = _filmeService.RecuperarFilmes(classificacaoEtaria);

@@ -8,6 +8,7 @@ namespace UsuariosAPI.Profiles{
         public UsuarioProfile(){
             CreateMap<CreateUsuarioDto, Usuario>();
             CreateMap<Usuario, IdentityUser<int>>();
+            CreateMap<Usuario, CustomIdentityUser>();
         }
     }
 }

@@ -12,6 +12,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using FilmesAPI.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FilmesApi
 {
@@ -52,6 +54,14 @@ namespace FilmesApi
                 ClockSkew = TimeSpan.Zero
                 };
             });
+
+            services.AddAuthorization(opt => {
+                opt.AddPolicy("IdadeMinima", policy => {
+                    policy.Requirements.Add(new IdadeMinimaRequirement(18));
+                });
+            });
+
+            services.AddSingleton<IAuthorizationHandler, IdadeMinimaHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

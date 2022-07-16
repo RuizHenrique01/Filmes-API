@@ -9,10 +9,10 @@ using UsuariosAPI.Models;
 namespace UsuariosAPI.Services{
 
     public class LoginService{
-        private SignInManager<IdentityUser<int>> _signInManager;
+        private SignInManager<CustomIdentityUser> _signInManager;
         private TokenService _tokenService;
 
-        public LoginService(SignInManager<IdentityUser<int>> signInManager, TokenService tokenService){
+        public LoginService(SignInManager<CustomIdentityUser> signInManager, TokenService tokenService){
             _signInManager = signInManager;
             _tokenService = tokenService;
         }
@@ -36,7 +36,7 @@ namespace UsuariosAPI.Services{
 
         public Result ResetaSenhaUsuario(EfetuaResetRequest request)
         {
-            IdentityUser<int> identityUser = RecuperaUsuarioPorEmail(request.Email);
+            CustomIdentityUser identityUser = RecuperaUsuarioPorEmail(request.Email);
 
             if(identityUser == null){
                 Result.Fail("Falha na redefinição de senha!");
@@ -53,7 +53,7 @@ namespace UsuariosAPI.Services{
 
         public Result SolicitaResetSenhaUsuario(SolicitaResetRequest request)
         {
-            IdentityUser<int> identityUser = RecuperaUsuarioPorEmail(request.Email);
+            CustomIdentityUser identityUser = RecuperaUsuarioPorEmail(request.Email);
 
             if(identityUser == null){
                 Result.Fail("Falha na solicitação de redefinição de senha!");
@@ -66,7 +66,7 @@ namespace UsuariosAPI.Services{
             return Result.Ok().WithSuccess(code);
         }
 
-        public IdentityUser<int> RecuperaUsuarioPorEmail(string email){
+        public CustomIdentityUser RecuperaUsuarioPorEmail(string email){
             return _signInManager
             .UserManager
             .Users

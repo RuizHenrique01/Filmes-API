@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using UsuariosAPI.Data;
+using UsuariosAPI.Models;
 using UsuariosAPI.Services;
 
 namespace UsuariosAPI
@@ -31,7 +32,7 @@ namespace UsuariosAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<UserDbContext>(options => options.UseLazyLoadingProxies().UseMySql(Configuration.GetConnectionString("UsuarioConnection"), ServerVersion.AutoDetect(Configuration.GetConnectionString("UsuarioConnection"))));
-            services.AddIdentity<IdentityUser<int>, IdentityRole<int>>(
+            services.AddIdentity<CustomIdentityUser, IdentityRole<int>>(
                 opt => opt.SignIn.RequireConfirmedEmail = true
             ).AddEntityFrameworkStores<UserDbContext>()
             .AddDefaultTokenProviders();
